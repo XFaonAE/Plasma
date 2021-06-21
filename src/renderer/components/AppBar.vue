@@ -50,7 +50,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: var(--layer0);
+        background: var(--layer1);
         .section {
             -webkit-app-region: no-drag;
         }
@@ -68,7 +68,7 @@
                 background: transparent;
                 &:hover {
                     opacity: 1;
-                    background: var(--layer1);
+                    background: var(--layer2);
                 }
             }
         }
@@ -88,7 +88,7 @@
                 display: flex;
                 &:hover {
                     opacity: 1;
-                    background: var(--layer1);
+                    background: var(--layer2);
                 }
             }
         }
