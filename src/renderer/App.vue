@@ -1,15 +1,38 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    <div class="App">
+        <AppBar :menuButtons="[
+            {
+                text: 'File'
+            },
+            {
+                text: 'Edit'
+            },
+            {
+                text: 'Debug'
+            }
+        ]" title="Plasma"/>
+    </div>
 </template>
 
 <script>
-  export default {
-    name: 'plasma'
-  }
+    import AppBar from "./components/AppBar.vue";
+
+    export default {
+        components: {
+            AppBar
+        }
+    }
 </script>
 
-<style>
-  /* CSS */
+<style lang="less">
+    @import "./assets/fonts/FontAwesome/css/all.css";
+    body {
+        margin: 0px;
+        padding: 0px;
+        background: var(--layer1);
+    }
+    * {
+        outline: none;
+        box-sizing: border-box;
+    }
 </style>

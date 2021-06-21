@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import '../renderer/store'
 
 /**
@@ -19,9 +19,10 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
+    height: 700,
     useContentSize: true,
-    width: 1000
+    width: 1500,
+    frame: false
   })
 
   mainWindow.loadURL(winURL)
@@ -29,6 +30,22 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  ipcMain.on("_ELECTRON_windowClose", (event, data) => {
+    mainWindow.close(); 
+  });
+
+  ipcMain.on("_ELECTRON_windowResize", (event, data) => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.restore();
+      return; 
+    }
+    mainWindow.maximize(); 
+  });
+
+  ipcMain.on("_ELECTRON_windowMinimize", (event, data) => {
+    mainWindow.minimize(); 
+  });
 }
 
 app.on('ready', createWindow)
