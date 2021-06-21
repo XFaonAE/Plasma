@@ -1,5 +1,6 @@
-import { app, BrowserWindow, ipcMain } from "electron"
-import "../renderer/store"
+import { app, BrowserWindow, ipcMain } from "electron";
+import "../renderer/store";
+
 if (process.env.NODE_ENV !== "development") {
     global.__static = require("path").join(__dirname, "/static").replace(/\\/g, "\\\\");
 }
