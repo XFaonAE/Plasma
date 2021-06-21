@@ -17,6 +17,7 @@
         <div class="APP_main">
             <SideRail />
             <SideBar />
+            <MainFrame />
         </div>
         <AppGutter />
     </div>
@@ -28,13 +29,15 @@
     import SideBar from "./components/SideBar.vue";
     import { webFrame } from "electron";
     import AppGutter from "./components/AppGutter.vue";
+    import MainFrame from "./components/MainFrame.vue";
 
     export default {
         components: {
             AppBar,
             SideRail,
             SideBar,
-            AppGutter
+            AppGutter,
+            MainFrame
         },
         mounted() {
             webFrame.setZoomFactor(1);

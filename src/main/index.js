@@ -16,6 +16,8 @@ function createWindow () {
         height: 700,
         useContentSize: true,
         width: 1500,
+        minWidth: 880,
+        minHeight: 620,
         frame: false,
         webPreferences: {
             nodeIntegration: true,
