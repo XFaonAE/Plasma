@@ -17,6 +17,14 @@
     </div>
 </template>
 
+<script>
+    export default {
+        mounted() {
+            const rail = this.$el;
+        }
+    }
+</script>
+
 <style lang="less">
     .MainFrame {
         width: 100%;
