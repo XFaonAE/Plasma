@@ -1,5 +1,6 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow } from "electron";
 import "../renderer/store";
+import ipc from "./app/ipc";
 
 if (process.env.NODE_ENV !== "development") {
     global.__static = require("path").join(__dirname, "/static").replace(/\\/g, "\\\\");
@@ -15,7 +16,11 @@ function createWindow () {
         height: 700,
         useContentSize: true,
         width: 1500,
-        frame: false
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     });
 
     mainWindow.loadURL(winURL);
@@ -24,21 +29,7 @@ function createWindow () {
         mainWindow = null
     });
 
-    ipcMain.on("_ELECTRON_windowClose", (event, data) => {
-        mainWindow.close(); 
-    });
-
-    ipcMain.on("_ELECTRON_windowResize", (event, data) => {
-        if (mainWindow.isMaximized()) {
-        mainWindow.restore();
-        return; 
-        }
-        mainWindow.maximize(); 
-    });
-
-    ipcMain.on("_ELECTRON_windowMinimize", (event, data) => {
-        mainWindow.minimize(); 
-    });
+    ipc(mainWindow);
 }
 
 app.on("ready", createWindow)
